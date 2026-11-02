@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="PZ_BST.vcxproj" Id="d883f8b4-4436-41a9-a074-ed91d09a05a6" />
+</Solution>
