@@ -19,7 +19,7 @@ int main() {
     std::string filename;
 
     while (true) {
-        std::cout << "\n=== MENU DRZEWA BST ===\n";
+        std::cout << "\n==- MENU DRZEWA BST -==\n";
         std::cout << "1. Dodaj element\n";
         std::cout << "2. Usun element\n";
         std::cout << "3. Usun cale drzewo\n";
