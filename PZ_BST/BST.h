@@ -1,6 +1,6 @@
 /**
  * @file BST.h
- * @brief Interfejs klasy reprezentującej drzewo poszukiwań binarnych (BST).
+ * @brief Deklaracja klasy BST reprezentującej drzewo poszukiwań binarnych.
  */
 
 #pragma once
@@ -9,108 +9,109 @@
 #include <fstream>
 #include <vector>
 
-/**
- * @class BST
- * @brief Strukrura danych Binary Search Tree (BST) z zestawem podstawowych operacji.
- *
- * Umożliwia wstawianie, usuwanie i wyszukiwanie elementów, wyznaczanie ścieżki
- * oraz przechodzenie przez drzewo (porządki preorder, inorder, postorder).
- */
+ /**
+  * @class BST
+  * @brief Klasa implementująca drzewo BST z podstawowymi operacjami.
+  *
+  * Zapewnia metody do dodawania, usuwania, wyszukiwania drogi oraz
+  * wyświetlania drzewa w różnych porządkach.
+  */
 class BST {
 private:
-    Node* root; /**< Wskaźnik na korzeń (węzeł główny). */
+    Node* root; /**< Wskaźnik na korzeń drzewa */
 
     /**
-     * @brief Pomocnicza funkcja do rekurencyjnego umieszczania klucza w drzewie.
-     * @param node Aktualnie rozpatrywany węzeł.
-     * @param data Wartość wstawiana.
-     * @return Zaktualizowany wskaźnik na poddrzewo.
+     * @brief Rekurencyjne dodawanie elementu do drzewa.
+     * @param node Aktualny węzeł.
+     * @param data Wartość do dodania.
+     * @return Zmodyfikowany węzeł (poddrzewo).
      */
     Node* insert(Node* node, int data);
 
     /**
-     * @brief Pomocnicza funkcja do rekurencyjnego usuwania klucza.
-     * @param node Aktualny korzeń poddrzewa.
-     * @param data Wartość przeznaczona do skasowania.
-     * @return Wskaźnik na modyfikowane poddrzewo.
+     * @brief Rekurencyjne usuwanie elementu z drzewa.
+     * @param node Aktualny węzeł.
+     * @param data Wartość do usunięcia.
+     * @return Zmodyfikowany węzeł (poddrzewo).
      */
     Node* remove(Node* node, int data);
 
     /**
-     * @brief Wyszukuje węzeł o minimalnym kluczu w danym poddrzewie.
-     * @param node Korzeń poddrzewa do przeszukania.
+     * @brief Znajduje węzeł z najmniejszą wartością w poddrzewie.
+     * @param node Węzeł początkowy.
      * @return Wskaźnik na węzeł z najmniejszą wartością.
      */
     Node* findMin(Node* node);
 
     /**
-     * @brief Rekurencyjnie destruuje węzły i czyści pamięć poddrzewa.
-     * @param node Węzeł startowy czyszczenia.
+     * @brief Rekurencyjne usuwanie wszystkich węzłów (zwalnianie pamięci).
+     * @param node Węzeł początkowy do usunięcia.
      */
     void clear(Node* node);
 
     /**
-     * @brief Rekurencyjne budowanie ścieżki do poszukiwanej wartości.
+     * @brief Rekurencyjne szukanie drogi do podanego elementu.
      * @param node Aktualny węzeł.
-     * @param data Szukany klucz.
-     * @param path Wektor, do którego dopisywane są kolejne węzły na ścieżce.
-     * @return true jeśli element został odnaleziony, false w przeciwnym razie.
+     * @param data Szukana wartość.
+     * @param path Wektor przechowujący odwiedzone węzły (kontener STL).
+     * @return True jeśli element znaleziono, False w przeciwnym razie.
      */
     bool findPath(Node* node, int data, std::vector<int>& path);
 
-    void printPreorder(Node* node);  /**< Przechodzenie w porządku preorder (NLR). */
-    void printInorder(Node* node);   /**< Przechodzenie w porządku inorder (LNR). */
-    void printPostorder(Node* node); /**< Przechodzenie w porządku postorder (LRN). */
-    void saveToText(Node* node, std::ofstream& file); /**< Zapis struktur poddrzewa do strumienia plikowego. */
+    void printPreorder(Node* node);  /**< Pomocnicza metoda wypisywania preorder */
+    void printInorder(Node* node);   /**< Pomocnicza metoda wypisywania inorder */
+    void printPostorder(Node* node); /**< Pomocnicza metoda wypisywania postorder */
+    void saveToText(Node* node, std::ofstream& file); /**< Pomocniczy zapis węzłów */
 
 public:
     /**
-     * @brief Tworzy puste drzewo BST (root = nullptr).
+     * @brief Konstruktor domyślny. Inicjalizuje puste drzewo.
      */
     BST();
 
     /**
-     * @brief Destruktor. Zwalnia dynamicznie alokowaną pamięć wszystkich węzłów.
+     * @brief Destruktor. Zwalnia całą pamięć zaalokowaną na drzewo.
      */
     ~BST();
 
     /**
-     * @brief Wstawia nowy element do struktury drzewa.
+     * @brief Dodaje nowy element do drzewa.
      * @param data Wartość do dodania.
      */
     void insert(int data);
 
     /**
-     * @brief Usuwa element o podanym kluczu z drzewa.
+     * @brief Usuwa wskazany element z drzewa.
+     * @param data Wartość do usunięcia.
      */
     void remove(int data);
 
     /**
-     * @brief Czyszczenie całego drzewa i zwalnianie pamięci.
+     * @brief Usuwa całe drzewo i zwalnia pamięć.
      */
     void clear();
 
     /**
-     * @brief Wyznacza ścieżkę od korzenia do zadanej wartości i drukuje ją na wyjściu.
-     * @param data Poszukiwana wartość.
+     * @brief Szuka drogi do elementu i wypisuje ją na ekran.
+     * @param data Szukana wartość.
      */
     void findPath(int data);
 
     /**
-     * @brief Wypisuje zawartość drzewa określonym trybem przejścia.
-     * @param method Kod metody: 1 (Preorder), 2 (Inorder), 3 (Postorder).
+     * @brief Wyświetla drzewo graficznie/tekstowo wybraną metodą.
+     * @param method 1 - Preorder, 2 - Inorder, 3 - Postorder.
      */
     void display(int method);
 
     /**
-     * @brief Eksportuje strukturę drzewa do pliku tekstowego.
-     * @param filename Ścieżka/nazwa pliku docelowego.
+     * @brief Zapisuje aktualne drzewo do pliku tekstowego.
+     * @param filename Nazwa pliku wyjściowego.
      */
     void saveToText(const std::string& filename);
 
-    /** @brief Pobiera wskaźnik na korzeń drzewa (np. dla modułów FileManager). */
+    /** @brief Zwraca korzeń drzewa (używane przez FileManager). */
     Node* getRoot() const { return root; }
 
-    /** @brief Podmienia wskaźnik korzenia (przydatne przy odczycie z pliku). */
+    /** @brief Ustawia nowy korzeń drzewa (używane przy wczytywaniu). */
     void setRoot(Node* newRoot) { root = newRoot; }
 };
