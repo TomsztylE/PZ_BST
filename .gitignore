@@ -1,0 +1,9 @@
+*.exe
+*.obj
+*.o
+.vs/
+x64/
+Debug/
+Release/
+html/
+latex/
