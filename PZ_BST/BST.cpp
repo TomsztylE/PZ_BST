@@ -60,12 +60,12 @@ void BST::clear(Node* node) {
 void BST::findPath(int data) {
     std::vector<int> path;
     if (findPath(root, data, path)) {
-        std::cout << "Droga: ";
+        std::cout << "Droga konflikt: ";
         for (int val : path) std::cout << val << " ";
         std::cout << "\n";
     }
     else {
-        std::cout << "Element nie istnieje.\n";
+        std::cout << "Element nie istnieje konflikt.\n";
     }
 }
 
@@ -79,9 +79,9 @@ bool BST::findPath(Node* node, int data, std::vector<int>& path) {
 }
 
 void BST::display(int method) {
-    if (method == 1) { std::cout << "Preorder: "; printPreorder(root); }
-    else if (method == 2) { std::cout << "Inorder: "; printInorder(root); }
-    else if (method == 3) { std::cout << "Postorder: "; printPostorder(root); }
+    if (method == 1) { std::cout << "Preorder: konflikt "; printPreorder(root); }
+    else if (method == 2) { std::cout << "Inorder: konflikt "; printInorder(root); }
+    else if (method == 3) { std::cout << "Postorder: konflikt "; printPostorder(root); }
     std::cout << "\n";
 }
 
@@ -100,7 +100,7 @@ void BST::saveToText(const std::string& filename) {
     if (file.is_open()) {
         saveToText(root, file);
         file.close();
-        std::cout << "Zapisano do pliku tekstowego.\n";
+        std::cout << "Zapisano do pliku tekstowego.\n konflikt";
     }
 }
 
