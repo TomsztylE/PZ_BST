@@ -80,8 +80,8 @@ bool BST::findPath(Node* node, int data, std::vector<int>& path) {
 
 void BST::display(int method) {
     if (method == 1) { std::cout << "Preorder: konflikt "; printPreorder(root); }
-    else if (method == 2) { std::cout << "Inorder: konflikt "; printInorder(root); }
-    else if (method == 3) { std::cout << "Postorder: konflikt "; printPostorder(root); }
+    else if (method == 2) { std::cout << "Inorder:nokonflikt "; printInorder(root); }
+    else if (method == 3) { std::cout << "Postorder:nokonflikt "; printPostorder(root); }
     std::cout << "\n";
 }
 
@@ -100,7 +100,7 @@ void BST::saveToText(const std::string& filename) {
     if (file.is_open()) {
         saveToText(root, file);
         file.close();
-        std::cout << "Zapisano do pliku tekstowego.\n konflikt";
+        std::cout << "Zapisano do pliku tekstowego.\n nokonflikt";
     }
 }
 
